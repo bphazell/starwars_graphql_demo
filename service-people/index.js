@@ -1,0 +1,15 @@
+const { ApolloServer } = require("@apollo/server");
+const { startStandaloneServer } = require("@apollo/server/standalone");
+const typeDefs = require("./people-schema");
+
+
+async function startApolloServer() {
+    const server = new ApolloServer({ typeDefs });
+    const { url } = await startStandaloneServer(server);
+    console.log(`
+    🚀  Server is running!
+    📭  Query at ${url}
+  `);
+  }
+
+  startApolloServer();
