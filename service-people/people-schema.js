@@ -2,12 +2,12 @@ const gql = require("graphql-tag");
 
 const typeDefs = gql`
     type Query {
-        listAllPeople: [Person!]!
+        #Not Working
+        allPeople: [Person!]!
         person(id: ID!): Person
     }
 
     type Person {
-        id: ID!
         name: String!
         height: String
         mass: Int
@@ -15,7 +15,16 @@ const typeDefs = gql`
         eye_color: String
         birth_year: String
         gender: String
+        homeworld: Planet
+    }
 
+    type Planet {
+        name: String!
+        climate: String
+        population: String
+        gravity: String
+        terrain: String
+        diameter: String
     }
 `;
 module.exports = typeDefs;
