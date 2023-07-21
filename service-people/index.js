@@ -10,18 +10,22 @@ async function startApolloServer() {
         typeDefs,
         resolvers,
       });
+
+    const port = 4001;
+    const subgraphName = 'People'
     const { url } = await startStandaloneServer(server, {
         context: async () => {
             const { cache } = server;
             return {
                 dataSources: {
                     peopleAPI: new PeopleAPI({ cache }),
-                }
-            }
-        }
+                },
+            };
+        },
+        listen: { port }
     });
     console.log(`
-    🚀  Server is running!
+    🚀  Server ${subgraphName} is running!
     📭  Query at ${url}
   `);
   }
