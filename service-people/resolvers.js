@@ -3,11 +3,7 @@ const resolvers = {
 
     Query: {
         allPeople: (_, __, { dataSources }) => {
-            // return dataSources.peopleAPI.getAllPeople()
-            return dataSources.peopleAPI.getAllPeople().then(data => {
-                console.log(data['results']
-                );
-              })
+            return dataSources.peopleAPI.getAllPeople()
             // need to figure out how to parse ["results"] from response
         },
 
