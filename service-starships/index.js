@@ -7,6 +7,7 @@ const typeDefs = gql(readFileSync('./starships-schema.graphql', { encoding: 'utf
 
 const resolvers = require("./resolvers");
 const StarshipsAPI = require("./datasources/starships-api");
+const VehiclesAPI = require("./datasources/vehicles-api");
 
 
 async function startApolloServer() {
@@ -23,6 +24,7 @@ async function startApolloServer() {
             return {
               dataSources: {
                 starshipsAPI: new StarshipsAPI({ cache }),
+                vehiclesAPI: new VehiclesAPI({ cache }),
               }
             };
           },

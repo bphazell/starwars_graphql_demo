@@ -1,7 +1,8 @@
 
     type Query {
         # Not Working
-        starship(id: ID): Starship
+        starship(id: ID!): Starship
+        vehicle(id: ID!): Vehicle
     }
 
     type Starship {
@@ -17,6 +18,20 @@
         consumables: String
         hyperdrive_rating: String
         starship_class: String
+    }
+
+    type Vehicle {
+        name: String!
+        model: String
+        manufacturer: String
+        cost_in_credits: String
+        length: String
+        max_atmosphering_speed: String
+        crew: String
+        passengers: String
+        cargo_capacity: String
+        consumables: String
+        vehicle_class: String
     }
 
 

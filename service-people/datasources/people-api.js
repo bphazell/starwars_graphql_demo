@@ -13,8 +13,8 @@ class PeopleAPI extends RESTDataSource {
         return this.get(`people/${id}`);
     }
 
-    getSpecies(url) {
-        return this.get(`${url}`);
+    getSpecies(id) {
+        return this.get(`species/${id}`);
     }
 
 }
