@@ -1,6 +1,10 @@
 const { ApolloServer } = require("@apollo/server");
 const { startStandaloneServer } = require("@apollo/server/standalone");
-const typeDefs = require("./starships-schema");
+// const typeDefs = require("./starships-schema");
+const { readFileSync } = require('fs');
+const gql = require('graphql-tag');
+const typeDefs = gql(readFileSync('./starships-schema.graphql', { encoding: 'utf-8' }));
+
 const resolvers = require("./resolvers");
 const StarshipsAPI = require("./datasources/starships-api");
 
