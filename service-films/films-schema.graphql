@@ -1,0 +1,13 @@
+
+type Query {
+    film(id: ID!): Film 
+}
+
+type Film {
+    title: String!
+    episode_id: Int!
+    opening_crawl: String
+    director: String
+    producer: String
+    release_date: String
+}
