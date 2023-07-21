@@ -1,6 +1,10 @@
 const { ApolloServer } = require("@apollo/server");
 const { startStandaloneServer } = require("@apollo/server/standalone");
-const typeDefs = require("./people-schema");
+// const typeDefs = require("./people-schema");
+const { readFileSync } = require('fs');
+const gql = require('graphql-tag');
+const typeDefs = gql(readFileSync('./people-schema.graphql', { encoding: 'utf-8' }));
+
 const resolvers = require("./resolvers");
 const PeopleAPI = require("./datasources/people-api");
 
