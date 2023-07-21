@@ -13,6 +13,10 @@ class PeopleAPI extends RESTDataSource {
         return this.get(`people/${id}`);
     }
 
+    getSpecies(url) {
+        return this.get(`${url}`);
+    }
+
 }
 
 module.exports = PeopleAPI;

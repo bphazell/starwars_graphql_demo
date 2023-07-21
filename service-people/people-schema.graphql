@@ -13,6 +13,11 @@
         eye_color: String
         birth_year: String
         gender: String
+        species: Species
+    }
+
+    type Species {
+        name: String
     }
 
 

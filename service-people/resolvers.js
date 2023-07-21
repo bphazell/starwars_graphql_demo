@@ -10,8 +10,19 @@ const resolvers = {
         person: (_, { id }, { dataSources }) => {
             return dataSources.peopleAPI.getPerson(id);
         },
+    },
 
-    }
+    Person: {
+        species: ({ species }, _, { dataSources }) => {
+            console.log(species[0])
+            if (typeof species[0] != "undefined"){
+                return dataSources.peopleAPI.getSpecies(species[0])
+            } else {
+                return null
+            }
+        }
+    },
+
 
 };
 
