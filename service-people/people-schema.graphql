@@ -1,7 +1,7 @@
 
     type Query {
         # Not Working
-        allPeople: [Person!]!
+        allPeople: resultsList!
         person(id: ID): Person
     }
 
@@ -18,6 +18,13 @@
 
     type Species {
         name: String
+    }
+
+    type resultsList {
+        count: Int!
+        next: String
+        previous: String
+        people: [Person!]!
     }
 
 

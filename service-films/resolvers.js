@@ -2,10 +2,18 @@ const resolvers = {
 
     Query: {
         film: (_, { id }, { dataSources }) => {
-            console.log("in resolver")
             return dataSources.filmsAPI.getFilm(id);
         },
+        allFilms: (_, __, { dataSources }) => {
+            return dataSources.filmsAPI.getAllFilms();
+        }
       },
+    
+    resultsList: {
+        films: ( { results }) => {
+            return results
+        }
+    }
 
 };
 

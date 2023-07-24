@@ -1,6 +1,7 @@
 
     type Query {
         # Not Working
+        allStarships: resultsList
         starship(id: ID!): Starship
         vehicle(id: ID!): Vehicle
     }
@@ -32,6 +33,13 @@
         cargo_capacity: String
         consumables: String
         vehicle_class: String
+    }
+
+    type resultsList {
+        count: Int!
+        next: String
+        previous: String
+        starships: [Starship!]!
     }
 
 

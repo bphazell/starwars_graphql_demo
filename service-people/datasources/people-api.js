@@ -5,8 +5,7 @@ class PeopleAPI extends RESTDataSource {
 
 
     getAllPeople() {
-        console.log(this.get('people'));
-        // return this.get('people')['results'];
+        return this.get(`people/`);
     }
 
     getPerson(id) {

@@ -1,6 +1,8 @@
 
 type Query {
-    film(id: ID!): Film 
+    film(id: ID!): Film
+    allFilms: resultsList!
+
 }
 
 type Film {
@@ -10,4 +12,12 @@ type Film {
     director: String
     producer: String
     release_date: String
+}
+
+type resultsList {
+    count: Int!
+    next: String
+    previous: String
+    films: [Film!]!
+
 }

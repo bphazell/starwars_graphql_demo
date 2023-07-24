@@ -4,7 +4,6 @@ const resolvers = {
     Query: {
         allPeople: (_, __, { dataSources }) => {
             return dataSources.peopleAPI.getAllPeople()
-            // need to figure out how to parse ["results"] from response promise
         },
 
         person: (_, { id }, { dataSources }) => {
@@ -21,6 +20,12 @@ const resolvers = {
             } else {
                 return null
             }
+        }
+    },
+
+    resultsList: {
+        people: ( { results }) => {
+            return results
         }
     },
 

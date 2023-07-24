@@ -2,6 +2,7 @@
 
     type Query {
         planet(id: ID): Planet
+        allPlanets: resultsList!
     }
 
     type Planet {
@@ -11,5 +12,12 @@
         gravity: String
         terrain: String
         diameter: String
+    }
+
+    type resultsList {
+        count: Int!
+        next: String
+        previous: String
+        planets: [Planet!]!
     }
 
