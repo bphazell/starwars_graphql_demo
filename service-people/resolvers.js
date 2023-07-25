@@ -2,8 +2,8 @@
 const resolvers = {
 
     Query: {
-        allPeople: (_, __, { dataSources }) => {
-            return dataSources.peopleAPI.getAllPeople()
+        allPeople: (_, { page }, { dataSources }) => {
+            return dataSources.peopleAPI.getAllPeople(page)
         },
 
         person: (_, { id }, { dataSources }) => {

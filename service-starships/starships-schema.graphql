@@ -1,7 +1,7 @@
 
     type Query {
-        allStarships: shipsResultsList!
-        allVehicles: vehiclesResultsList!
+        allStarships(page: Int = 1): shipsResultsList!
+        allVehicles(page: Int = 1): vehiclesResultsList!
         starship(id: ID!): Starship
         vehicle(id: ID!): Vehicle
     }

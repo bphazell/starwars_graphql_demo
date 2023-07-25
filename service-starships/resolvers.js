@@ -1,12 +1,12 @@
 const resolvers = {
 
     Query: {
-        allStarships: (_, __, { dataSources }) => {
-            return dataSources.starshipsAPI.getAllStarships();
+        allStarships: (_, { page }, { dataSources }) => {
+            return dataSources.starshipsAPI.getAllStarships(page);
         },
 
-        allVehicles: (_, __, { dataSources }) => {
-            return dataSources.vehiclesAPI.getAllVehicles();
+        allVehicles: (_, { page }, { dataSources }) => {
+            return dataSources.vehiclesAPI.getAllVehicles(page);
         },
         
         starship: (_, { id }, { dataSources}) => {

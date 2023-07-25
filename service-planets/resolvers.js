@@ -3,8 +3,8 @@ const resolvers = {
         planet: (_, { id }, { dataSources }) => {
             return dataSources.planetsAPI.getPlanet(id);
         },
-        allPlanets: (_, __, { dataSources }) => {
-            return dataSources.planetsAPI.getAllPlanets();
+        allPlanets: (_, { page }, { dataSources }) => {
+            return dataSources.planetsAPI.getAllPlanets(page);
         },
     },
 

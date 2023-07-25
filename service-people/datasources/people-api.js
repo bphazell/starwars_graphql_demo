@@ -4,8 +4,8 @@ class PeopleAPI extends RESTDataSource {
     baseURL = "https://swapi.dev/api/"
 
 
-    getAllPeople() {
-        return this.get(`people/`);
+    getAllPeople(page) {
+        return this.get(`people/?page=${page}`);
     }
 
     getPerson(id) {

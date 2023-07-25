@@ -4,8 +4,8 @@ const { RESTDataSource } = require("@apollo/datasource-rest");
 class PlanetsAPI extends RESTDataSource {
     baseURL = "https://swapi.dev/api/"
 
-    getAllPlanets() {
-        return this.get(`planets/`)
+    getAllPlanets(page) {
+        return this.get(`planets/?page=${page}`)
     }
     
     getPlanet(id) {

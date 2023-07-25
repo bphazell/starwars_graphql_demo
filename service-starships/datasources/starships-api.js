@@ -3,8 +3,8 @@ const { RESTDataSource } = require("@apollo/datasource-rest");
 class StarshipsAPI extends RESTDataSource {
     baseURL = "https://swapi.dev/api/"
 
-    getAllStarships() {
-        return this.get(`starships/`)
+    getAllStarships(page) {
+        return this.get(`starships/?page=${page}`)
     }
 
     getStarship(id) {

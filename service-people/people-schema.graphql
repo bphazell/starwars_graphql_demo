@@ -1,6 +1,6 @@
 
     type Query {
-        allPeople: resultsList!
+        allPeople(page: Int = 1): resultsList!
         person(id: ID): Person
     }
 
