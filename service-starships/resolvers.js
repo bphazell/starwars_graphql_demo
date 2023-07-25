@@ -4,6 +4,10 @@ const resolvers = {
         allStarships: (_, __, { dataSources }) => {
             return dataSources.starshipsAPI.getAllStarships();
         },
+
+        allVehicles: (_, __, { dataSources }) => {
+            return dataSources.vehiclesAPI.getAllVehicles();
+        },
         
         starship: (_, { id }, { dataSources}) => {
             return dataSources.starshipsAPI.getStarship(id);
@@ -12,14 +16,20 @@ const resolvers = {
 
         vehicle: (_, { id}, {dataSources}) => {
             return dataSources.vehiclesAPI.getVehicle(id)
-        }
+        },
     },
 
-    resultsList: {
+    shipsResultsList: {
         starships: ({ results }) => {
             return results
-        }
-    }
+        },
+    },
+
+    vehiclesResultsList: {
+        vehicles: ({ results }) => {
+            return results
+        },
+    },
 
 
 };

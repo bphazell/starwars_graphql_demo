@@ -1,12 +1,25 @@
 
     type Query {
-        # Not Working
-        allStarships: resultsList
+        allStarships: shipsResultsList!
+        allVehicles: vehiclesResultsList!
         starship(id: ID!): Starship
         vehicle(id: ID!): Vehicle
     }
 
-    type Starship {
+    interface Ride {
+        name: String!
+        model: String
+        manufacturer: String
+        cost_in_credits: String
+        length: String
+        max_atmosphering_speed: String
+        crew: String
+        passengers: String
+        cargo_capacity: String
+        consumables: String
+    }
+
+    type Starship implements Ride {
         name: String!
         model: String
         manufacturer: String
@@ -21,7 +34,7 @@
         starship_class: String
     }
 
-    type Vehicle {
+    type Vehicle implements Ride {
         name: String!
         model: String
         manufacturer: String
@@ -35,11 +48,24 @@
         vehicle_class: String
     }
 
-    type resultsList {
+    interface resultsList {
+        count: Int!
+        next: String
+        previous: String
+    }
+
+    type shipsResultsList implements resultsList {
         count: Int!
         next: String
         previous: String
         starships: [Starship!]!
+    }
+
+    type vehiclesResultsList implements resultsList {
+        count: Int!
+        next: String
+        previous: String
+        vehicles: [Vehicle!]!
     }
 
 

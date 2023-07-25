@@ -6,5 +6,9 @@ class VehiclesAPI extends RESTDataSource {
     getVehicle(id) {
         return this.get(`vehicles/${id}`)
     }
+
+    getAllVehicles() {
+        return this.get(`vehicles/`)
+    }
   }
   module.exports = VehiclesAPI;

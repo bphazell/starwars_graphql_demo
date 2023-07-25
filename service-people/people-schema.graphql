@@ -1,6 +1,5 @@
 
     type Query {
-        # Not Working
         allPeople: resultsList!
         person(id: ID): Person
     }
