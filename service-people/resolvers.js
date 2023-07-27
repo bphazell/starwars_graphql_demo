@@ -12,7 +12,7 @@ function extractIDFromArray(array){
             output_array.push(val)
         }
         return output_array
-}
+};
 
 const resolvers = {
 

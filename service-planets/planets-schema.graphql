@@ -7,11 +7,15 @@
 
     type Planet {
         name: String!
-        climate: String
-        population: String
-        gravity: String
-        terrain: String
+        rotation_period: String
+        orbital_period: String
         diameter: String
+        climate: String
+        gravity: String
+        population: String
+        film_ids: [String]
+        residents: [String]
+        
     }
 
     type resultsList {
