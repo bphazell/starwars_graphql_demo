@@ -1,7 +1,8 @@
 
     type Query {
-        allPeople(page: Int = 1): resultsList!
+        allPeople(page: Int = 1): peopleResultsList!
         person(id: ID): Person
+        allSpecies(page: Int = 1): speciesResultsList!
     }
 
     type Person {
@@ -13,17 +14,35 @@
         birth_year: String
         gender: String
         species: Species
+        film_ids: [String]
+        vehicle_ids: [String]
+        starship_ids: [String]
     }
 
-    type Species {
-        name: String
-    }
-
-    type resultsList {
+    type peopleResultsList {
         count: Int!
         next: String
         previous: String
         people: [Person!]!
+    }
+
+    type speciesResultsList {
+        count: Int!
+        next: String
+        previous: String
+        species: [Species!]!
+    }
+
+    type Species {
+        name: String!
+        classification: String
+        designation: String
+        average_height: String
+        skin_colors: String
+        hair_colors: String
+        eye_colors: String
+        average_lifespan: String
+        language: String
     }
 
 
