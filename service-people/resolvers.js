@@ -1,3 +1,18 @@
+ // extracts id from full API call 
+function extractIDFromString(string){
+        let id = string.slice(-3, -1).replace('/', '');
+        return id
+};
+
+// iterates through a loop to extract id from full API call 
+function extractIDFromArray(array){
+    let output_array = [];
+        for (val of array){
+            val = extractIDFromString(val)
+            output_array.push(val)
+        }
+        return output_array
+}
 
 const resolvers = {
 
@@ -13,36 +28,28 @@ const resolvers = {
         person: (_, { id }, { dataSources }) => {
             return dataSources.peopleAPI.getPerson(id);
         },
+
+        species:(_, { id }, { dataSources }) => {
+            return dataSources.peopleAPI.getSpecies(id);
+        },
     },
 
     Person: {
         species: ({ species }, _, { dataSources }) => {
             if (species.length > 0){
-                // extracts species id from full API call 
-                let species_id = species[0].slice(-3, -1).replace('/', '');
+                let species_id = extractIDFromString(species[0])
                 return dataSources.peopleAPI.getSpecies(species_id)
             } else {
                 return null
             }
         },
         film_ids: ({ films }) => {
-            let film_ids = [];
-            for (val of films){
-                // extracts film id from full API call 
-                film_ids.push(val.slice(-2, -1))
-            }
-            return film_ids
+            return extractIDFromArray(films)
         },
 
         vehicle_ids: ({ vehicles }) => {
             if (vehicles.length > 0){
-                let vehicle_ids = [];
-                for (val of vehicles){
-                    // extracts vehicle id from full API call 
-                    val = val.slice(-3, -1).replace('/', '');
-                    vehicle_ids.push(val)
-                }
-                return vehicle_ids
+                return extractIDFromArray(vehicles)
             } else {
                 return null
             }
@@ -50,19 +57,32 @@ const resolvers = {
 
         starship_ids: ({ starships }) => {
             if (starships.length > 0){ 
-                let starship_ids = [];
-                for (val of starships){
-                    // extracts starship id from full API call
-                    val = val.slice(-3, -1).replace('/', '');
-                    starship_ids.push(val)
-                }
-                return starship_ids
+                return extractIDFromArray(starships)
             } else {
                 return null
             }
             
         },
 
+        homeworld_id: ({homeworld}) => {
+            if (typeof homeworld !== 'undefined'){
+                return extractIDFromString(homeworld)
+            } else {
+                return null
+            }
+        },
+
+    },
+
+    Species: {
+        people: ({ people }, __, { dataSources}) => {
+            let people_array = []
+            for (val of people) {
+                let person_id = extractIDFromString(val)
+                people_array.push(dataSources.peopleAPI.getPerson(person_id))
+            }
+            return people_array
+        },
     },
 
     peopleResultsList: {

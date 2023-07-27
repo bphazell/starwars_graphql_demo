@@ -1,8 +1,9 @@
 
     type Query {
         allPeople(page: Int = 1): peopleResultsList!
-        person(id: ID): Person
+        person(id: ID!): Person!
         allSpecies(page: Int = 1): speciesResultsList!
+        species(id: ID! = 1): Species!
     }
 
     type Person {
@@ -17,6 +18,7 @@
         film_ids: [String]
         vehicle_ids: [String]
         starship_ids: [String]
+        homeworld_id: String
     }
 
     type peopleResultsList {
@@ -43,6 +45,7 @@
         eye_colors: String
         average_lifespan: String
         language: String
+        people: [Person]
     }
 
 
