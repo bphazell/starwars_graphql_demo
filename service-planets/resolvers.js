@@ -38,10 +38,14 @@ const resolvers = {
         },
     }, 
 
-    resultsList: {
-        planets: ({ results }) => {
+    planetConnection: {
+        nodes: ({ results }) => {
             return results
-        }
+        },
+
+        pageInfo: (parent) =>{
+            return parent
+        },
     },
 
 };

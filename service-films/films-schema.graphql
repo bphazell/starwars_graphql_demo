@@ -1,7 +1,7 @@
 
 type Query {
     film(id: ID!): Film
-    allFilms: resultsList!
+    allFilms: filmConnection!
 
 }
 
@@ -12,12 +12,23 @@ type Film {
     director: String
     producer: String
     release_date: String
+    character_ids: [String]
+    planet_ids: [String]
+    starship_ids: [String]
+    vehicle_ids: [String]
+    species_ids: [String]
+
+
 }
 
-type resultsList {
+type PageInfo {
     count: Int!
     next: String
     previous: String
-    films: [Film!]!
+}
+
+type filmConnection {
+    pageInfo: PageInfo!
+    nodes: [Film!]!
 
 }

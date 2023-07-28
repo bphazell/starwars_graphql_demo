@@ -85,16 +85,22 @@ const resolvers = {
         },
     },
 
-    peopleResultsList: {
-        people: ( { results }) => {
+    peopleConnection: {
+        nodes: ( { results }) => {
             return results
-        }
+        },
+        pageInfo: (parent) => {
+            return parent
+        },
     },
 
-    speciesResultsList: {
-        species: ( { results }) => {
+    speciesConnection: {
+        nodes: ( { results }) => {
             return results
-        }
+        },
+        pageInfo: (parent) => {
+            return parent
+        },
     },
 
 

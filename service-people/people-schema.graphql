@@ -1,8 +1,8 @@
 
     type Query {
-        allPeople(page: Int = 1): peopleResultsList!
+        allPeople(page: Int = 1): peopleConnection!
         person(id: ID!): Person!
-        allSpecies(page: Int = 1): speciesResultsList!
+        allSpecies(page: Int = 1): speciesConnection!
         species(id: ID! = 1): Species!
     }
 
@@ -21,18 +21,20 @@
         homeworld_id: String
     }
 
-    type peopleResultsList {
+    type PageInfo {
         count: Int!
         next: String
         previous: String
-        people: [Person!]!
     }
 
-    type speciesResultsList {
-        count: Int!
-        next: String
-        previous: String
-        species: [Species!]!
+    type peopleConnection {
+        pageInfo: PageInfo!
+        nodes: [Person!]!
+    }
+
+    type speciesConnection {
+        pageInfo: PageInfo!
+        nodes: [Species!]!
     }
 
     type Species {

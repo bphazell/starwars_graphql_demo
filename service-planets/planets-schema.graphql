@@ -2,7 +2,7 @@
 
     type Query {
         planet(id: ID): Planet
-        allPlanets(page: Int = 1): resultsList!
+        allPlanets(page: Int = 1): planetConnection!
     }
 
     type Planet {
@@ -18,10 +18,14 @@
         
     }
 
-    type resultsList {
+    type PageInfo {
         count: Int!
         next: String
         previous: String
-        planets: [Planet!]!
+    }
+
+    type planetConnection {
+        pageInfo: PageInfo!
+        nodes: [Planet!]!
     }
 

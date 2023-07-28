@@ -1,8 +1,7 @@
 
     type Query {
-        allStarships(page: Int = 1): shipsResultsList!
-        allVehicles(page: Int = 1): vehiclesResultsList!
-        #allVehicles(page: Int = 1): resultsList!
+        allStarships(page: Int = 1): shipsConnection!
+        allVehicles(page: Int = 1): vehiclesConnection!
         # allStarshipsAndVehicles(page: Int = 1): resultsList
         starship(id: ID!): Starship
         vehicle(id: ID!): Vehicle
@@ -33,6 +32,8 @@
         cargo_capacity: String
         consumables: String
         hyperdrive_rating: String
+        film_ids: [String]
+        pilots: [String]
         starship_class: String
     }
 
@@ -47,27 +48,25 @@
         passengers: String
         cargo_capacity: String
         consumables: String
+        film_ids: [String]
+        pilots: [String]
         vehicle_class: String
     }
 
-    interface resultsList {
+    type PageInfo {
         count: Int!
         next: String
         previous: String
     }
 
-    type shipsResultsList implements resultsList {
-        count: Int!
-        next: String
-        previous: String
-        starships: [Starship!]!
+    type shipsConnection {
+        pageInfo: PageInfo
+        nodes: [Starship!]!
     }
 
-    type vehiclesResultsList implements resultsList {
-        count: Int!
-        next: String
-        previous: String
-        vehicles: [Vehicle!]!
+    type vehiclesConnection {
+        pageInfo: PageInfo
+        nodes: [Vehicle!]!
     }
 
 
