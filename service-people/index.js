@@ -1,5 +1,6 @@
 const { ApolloServer } = require("@apollo/server");
 const { startStandaloneServer } = require("@apollo/server/standalone");
+const { buildSubgraphSchema } = require("@apollo/subgraph"); 
 // const typeDefs = require("./people-schema");
 const { readFileSync } = require('fs');
 const gql = require('graphql-tag');
@@ -11,8 +12,7 @@ const PeopleAPI = require("./datasources/people-api");
 
 async function startApolloServer() {
     const server = new ApolloServer({
-        typeDefs,
-        resolvers,
+        schema: buildSubgraphSchema({ typeDefs, resolvers }), 
       });
 
     const port = 4001;

@@ -1,7 +1,11 @@
-
+extend schema
+  @link(url: "https://specs.apollo.dev/federation/v2.0",
+        import: ["@key"])
+        
     type Query {
         allStarships(page: Int = 1): shipsConnection!
         allVehicles(page: Int = 1): vehiclesConnection!
+        #testStarships: [Starship]
         # allStarshipsAndVehicles(page: Int = 1): resultsList
         starship(id: ID!): Starship
         vehicle(id: ID!): Vehicle

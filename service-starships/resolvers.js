@@ -21,6 +21,12 @@ const resolvers = {
             return dataSources.starshipsAPI.getAllStarships(page);
         },
 
+        // sample code to wait for response before modifying returned object
+        // testStarships: async (_, __, { dataSources}) => {
+        //     const ships = await dataSources.starshipsAPI.getAllStarships(1)
+        //     return ships["results"]
+        // },
+
         allVehicles: (_, { page }, { dataSources }) => {
             return dataSources.vehiclesAPI.getAllVehicles(page);
         },
