@@ -1,6 +1,6 @@
 extend schema
   @link(url: "https://specs.apollo.dev/federation/v2.0",
-        import: ["@key"])
+        import: ["@key", "@shareable"])
 
 type Query {
     film(id: ID!): Film
@@ -24,7 +24,7 @@ type Film {
 
 }
 
-type PageInfo {
+type PageInfo @shareable {
     count: Int!
     next: String
     previous: String

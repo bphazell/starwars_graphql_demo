@@ -1,7 +1,7 @@
 extend schema
   @link(url: "https://specs.apollo.dev/federation/v2.0",
-        import: ["@key"])
-        
+        import: ["@key", "@shareable"])
+
     type Query {
         allStarships(page: Int = 1): shipsConnection!
         allVehicles(page: Int = 1): vehiclesConnection!
@@ -57,7 +57,7 @@ extend schema
         vehicle_class: String
     }
 
-    type PageInfo {
+    type PageInfo @shareable {
         count: Int!
         next: String
         previous: String
