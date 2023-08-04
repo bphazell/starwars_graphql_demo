@@ -44,6 +44,11 @@ const resolvers = {
     },
 
     Person: {
+
+        id: ({url}) => {
+            return extractIDFromString(url)
+        },
+
         species: ({ species }, _, { dataSources }) => {
             if (species.length > 0){
                 let species_id = extractIDFromString(species[0])
@@ -80,6 +85,10 @@ const resolvers = {
             } else {
                 return null
             }
+        },
+
+        __resolveReference: ({ id }, { dataSources}) => {
+            return dataSources.peopleAPI.getPerson(id);
         },
 
     },

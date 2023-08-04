@@ -4,16 +4,6 @@
     return id
 };
 
-// iterates through a loop to extract id from full API call 
-function extractIDFromArray(array){
-let output_array = [];
-    for (val of array){
-        val = extractIDFromString(val)
-        output_array.push(val)
-    }
-    return output_array
-};
-
 function extractIDFromArrayWithIDKey(array){
     let output_array = [];
         for (val of array){
@@ -57,7 +47,7 @@ const resolvers = {
 
         pilots: ({ pilots }) => {
             if (pilots.length > 0){ 
-                return extractIDFromArray(pilots)
+                return extractIDFromArrayWithIDKey(pilots)
             } else {
                 return null
             }
@@ -73,7 +63,7 @@ const resolvers = {
 
         pilots: ({ pilots }) => {
             if (pilots.length > 0){ 
-                return extractIDFromArray(pilots)
+                return extractIDFromArrayWithIDKey(pilots)
             } else {
                 return null
             }

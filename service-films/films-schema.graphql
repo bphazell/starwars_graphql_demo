@@ -16,7 +16,7 @@ type Film @key(fields: "id"){
     director: String
     producer: String
     release_date: String
-    character_ids: [String]
+    characters: [Person]
     planet_ids: [String]
     starship_ids: [String]
     vehicle_ids: [String]
@@ -24,6 +24,10 @@ type Film @key(fields: "id"){
     url: String
 
 
+}
+
+type Person @key(fields: "id", resolvable: false) {
+    id: ID!
 }
 
 type PageInfo @shareable {

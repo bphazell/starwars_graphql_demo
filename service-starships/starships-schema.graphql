@@ -37,8 +37,12 @@ extend schema
         consumables: String
         hyperdrive_rating: String
         films: [Film]
-        pilots: [String]
+        pilots: [Person]
         starship_class: String
+    }
+
+    type Person @key(fields: "id", resolvable: false) {
+        id: ID
     }
 
     type Vehicle implements Ride {
@@ -53,7 +57,7 @@ extend schema
         cargo_capacity: String
         consumables: String
         films: [Film]
-        pilots: [String]
+        pilots: [Person]
         vehicle_class: String
     }
 

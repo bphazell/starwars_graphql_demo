@@ -9,7 +9,8 @@ extend schema
         species(id: ID! = 1): Species!
     }
 
-    type Person {
+    type Person @key(fields: "id") {
+        id: ID!
         name: String!
         height: String
         mass: Int
