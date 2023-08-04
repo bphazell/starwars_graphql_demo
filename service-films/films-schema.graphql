@@ -8,7 +8,8 @@ type Query {
 
 }
 
-type Film {
+type Film @key(fields: "id"){
+    id: ID!
     title: String!
     episode_id: Int!
     opening_crawl: String
@@ -20,6 +21,7 @@ type Film {
     starship_ids: [String]
     vehicle_ids: [String]
     species_ids: [String]
+    url: String
 
 
 }

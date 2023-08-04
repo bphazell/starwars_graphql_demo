@@ -14,6 +14,15 @@ let output_array = [];
     return output_array
 };
 
+function extractIDFromArrayWithIDKey(array){
+    let output_array = [];
+        for (val of array){
+            val = extractIDFromString(val)
+            output_array.push({id: val})
+        }
+        return output_array
+};
+
 const resolvers = {
     Query: {
         planet: (_, { id }, { dataSources }) => {
@@ -25,8 +34,8 @@ const resolvers = {
     },
 
     Planet: {
-        film_ids: ( {films}) => {
-            return extractIDFromArray(films)
+        films: ( {films}) => {
+            return extractIDFromArrayWithIDKey(films)
         },
 
         residents: ( { residents }) => {

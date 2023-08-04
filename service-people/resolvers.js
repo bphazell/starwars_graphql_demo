@@ -14,6 +14,15 @@ function extractIDFromArray(array){
         return output_array
 };
 
+function extractIDFromArrayWithIDKey(array){
+    let output_array = [];
+        for (val of array){
+            val = extractIDFromString(val)
+            output_array.push({id: val})
+        }
+        return output_array
+};
+
 const resolvers = {
 
     Query: {
@@ -43,8 +52,9 @@ const resolvers = {
                 return null
             }
         },
-        film_ids: ({ films }) => {
-            return extractIDFromArray(films)
+        films: ({ films }) => {
+            let film_id = extractIDFromArrayWithIDKey(films)
+            return film_id
         },
 
         vehicle_ids: ({ vehicles }) => {

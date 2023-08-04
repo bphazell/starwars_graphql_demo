@@ -18,7 +18,7 @@ let output_array = [];
 const resolvers = {
 
     Query: {
-        film: (_, { id }, { dataSources }) => {
+        film:  (_, { id }, { dataSources }) => {
             return dataSources.filmsAPI.getFilm(id);
         },
         allFilms: (_, __, { dataSources }) => {
@@ -37,6 +37,11 @@ const resolvers = {
     },
 
     Film: {
+
+        id: ({ url }) => {
+            return extractIDFromString(url) 
+        },
+
         vehicle_ids: ({ vehicles }) => {
             if (vehicles.length > 0){
                 return extractIDFromArray(vehicles)
@@ -79,6 +84,10 @@ const resolvers = {
                 return null
             }
             
+        },
+
+        __resolveReference: ({ id }, { dataSources }) => {
+            return dataSources.filmsAPI.getFilm(id);
         },
 
     },

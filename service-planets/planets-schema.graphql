@@ -15,9 +15,12 @@ extend schema
         climate: String
         gravity: String
         population: String
-        film_ids: [String]
+        films: [Film]
         residents: [String]
-        
+    }
+
+    type Film @key(fields: "id", resolvable: false) {
+        id: ID!
     }
 
     type PageInfo @shareable {

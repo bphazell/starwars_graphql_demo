@@ -18,7 +18,7 @@ extend schema
         birth_year: String
         gender: String
         species: Species
-        film_ids: [String]
+        films: [Film]
         vehicle_ids: [String]
         starship_ids: [String]
         homeworld_id: String
@@ -51,6 +51,10 @@ extend schema
         average_lifespan: String
         language: String
         people: [Person]
+    }
+
+    type Film @key(fields: "id", resolvable: false){
+        id: ID!
     }
 
 

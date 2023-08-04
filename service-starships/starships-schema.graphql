@@ -36,7 +36,7 @@ extend schema
         cargo_capacity: String
         consumables: String
         hyperdrive_rating: String
-        film_ids: [String]
+        films: [Film]
         pilots: [String]
         starship_class: String
     }
@@ -52,9 +52,13 @@ extend schema
         passengers: String
         cargo_capacity: String
         consumables: String
-        film_ids: [String]
+        films: [Film]
         pilots: [String]
         vehicle_class: String
+    }
+
+    type Film @key(fields: "id", resolvable: false)  {
+        id: ID!
     }
 
     type PageInfo @shareable {
