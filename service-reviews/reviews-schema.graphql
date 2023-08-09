@@ -1,0 +1,26 @@
+
+
+type Query {
+    getReview(title: String!, apiKey: String!): reviewConnection
+}
+
+type reviewConnection {
+    reviewPageInfo: reviewPageInfo
+    nodes: Review
+}
+
+type reviewPageInfo {
+copyRight: String
+status: String
+hasMore: Boolean
+numResults: Int
+
+}
+
+type Review {
+    mpaaRating: String
+    criticsPick: Boolean
+    summaryShort: String
+    articleURL: String
+
+}

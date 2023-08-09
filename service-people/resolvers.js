@@ -34,8 +34,12 @@ const resolvers = {
             return dataSources.peopleAPI.getAllSpecies(page)
         },
 
-        person: (_, { id }, { dataSources }) => {
+        personByID: (_, { id }, { dataSources }) => {
             return dataSources.peopleAPI.getPerson(id);
+        },
+
+        searchPersonByName: (_, { name }, { dataSources}) => {
+            return dataSources.peopleAPI.getPersonByName(name)
         },
 
         species:(_, { id }, { dataSources }) => {

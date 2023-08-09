@@ -16,6 +16,10 @@ class PeopleAPI extends RESTDataSource {
         return this.get(`people/${id}`);
     }
 
+    getPersonByName(name) {
+        return this.get(`people/?search=${name}`);
+    }
+
     getSpecies(id) {
         return this.get(`species/${id}`);
     }

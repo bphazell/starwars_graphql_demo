@@ -4,7 +4,8 @@ extend schema
         
     type Query {
         allPeople(page: Int = 1): peopleConnection!
-        person(id: ID!): Person!
+        personByID(id: ID!): Person!
+        searchPersonByName(name: String!): peopleConnection
         allSpecies(page: Int = 1): speciesConnection!
         species(id: ID! = 1): Species!
     }
