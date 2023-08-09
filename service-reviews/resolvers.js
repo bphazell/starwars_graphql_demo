@@ -1,7 +1,6 @@
 
 const resolvers = {
     Query: {
-      // get all tracks, will be used to populate the homepage grid of our web client
       getReview: (_, { title, apiKey }, { dataSources }) => {
         // Add logic to accomdate NYT results for 'A New Hope'
         if (title == "A New Hope"){
@@ -44,5 +43,3 @@ const resolvers = {
 
   module.exports = resolvers;
 
-//   new hope 
-// The Empire Strikes Back

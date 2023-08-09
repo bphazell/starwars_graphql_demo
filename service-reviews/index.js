@@ -5,12 +5,13 @@ const gql = require('graphql-tag');
 const typeDefs = gql(readFileSync('./reviews-schema.graphql', { encoding: 'utf-8' }));
 const resolvers = require("./resolvers");
 const ReviewsAPI = require("./datasources/reviews-api");
+const { buildSubgraphSchema } = require("@apollo/subgraph"); 
 
 
 async function startApolloServer() {
     const server = new ApolloServer({ 
-        typeDefs,
-        resolvers, });
+        schema: buildSubgraphSchema({ typeDefs, resolvers }), 
+    });
 
     const port = 4005
     const subgraphName = 'Reviews'
