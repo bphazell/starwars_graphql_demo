@@ -5,12 +5,12 @@ extend schema
         import: ["@key"])
 
 type Query {
-    getReview(title: String!, apiKey: String!): reviewConnection
+    getReview(searchTitle: String!): reviewConnection
 }
 
 type reviewConnection {
     reviewPageInfo: reviewPageInfo
-    nodes: Review
+    nodes: Film
 }
 
 type reviewPageInfo {
@@ -21,10 +21,10 @@ numResults: Int
 
 }
 
-type Review {
+type Film @key(fields: "id") {
+    id: ID!
     mpaaRating: String
     criticsPick: Boolean
     summaryShort: String
     articleURL: String
-
 }

@@ -8,7 +8,7 @@ type Query {
 
 }
 
-type Film @key(fields: "id"){
+type Film @key(fields: "id") {
     id: ID!
     title: String!
     episode_id: Int!
