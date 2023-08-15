@@ -1,8 +1,7 @@
+
+
 function extractNYTResults(results) {
-    if (results == null) {
-        return null 
-        // Add logic to accomdate NYT results for 'A New Hope'
-    } else if (results.length > 1) {
+ if (results.length > 1) {
         return results[9]
     } else {
         return results[0]
@@ -27,22 +26,6 @@ function mapNYTDisplayTitleToSWAPIID(displayTitle) {
     }
 
 }
-// Generates a search string based of the SWAPI ID to search the NYT API
-function mapSWAPIIDToNYTSearchString(id) {
-    if (id == 1) {
-        return "Star Wars"
-    } else if (id == 2) {
-        return "Empire Strikes Back"
-    } else if (id == 3) {
-        return "Return of the Jedi"
-    } else if (id == 4) {
-        return "Phantom Menace"
-    } else if (id == 5) {
-        return "Attack of the Clones"
-    } else if (id == 6) {
-        return "Revenge of the Sith"
-    }
-}
 
 const resolvers = {
     Query: {
@@ -66,13 +49,15 @@ const resolvers = {
         },
 
         nodes: ({ results }) => {
-            results = extractNYTResults(results)
-                return {
-                    displayTitle: results["display_title"],
-                    mpaaRating: results["mpaa_rating"],
-                    criticsPick: results["critics_pick"],
-                    summaryShort: results["summary_short"],
-                    articleURL: results["link"]["url"]
+            if (results != null) {
+                results = extractNYTResults(results)
+                    return {
+                        displayTitle: results["display_title"],
+                        mpaaRating: results["mpaa_rating"],
+                        criticsPick: results["critics_pick"],
+                        summaryShort: results["summary_short"],
+                        articleURL: results["link"]["url"]
+                    }
                 }
         },
     },
@@ -82,17 +67,22 @@ const resolvers = {
             return mapNYTDisplayTitleToSWAPIID(displayTitle)
         },
 
-        __resolveReference: async ({id}, { dataSources}) => {
-            let search_query = mapSWAPIIDToNYTSearchString(id)
-            let search_results = await dataSources.reviewsAPI.getReview(search_query);
+        __resolveReference: async ({ title }, { dataSources}) => {
+            // Add logic to accomdate NYT results for 'A New Hope'
+            if (title == "A New Hope"){
+                title = "Star Wars"
+            }
+            let search_results = await dataSources.reviewsAPI.getReview(title);
             results = search_results["results"]
-            results = extractNYTResults(results)
-            return {
-                displayTitle: results["display_title"],
-                mpaaRating: results["mpaa_rating"],
-                criticsPick: results["critics_pick"],
-                summaryShort: results["summary_short"],
-                articleURL: results["link"]["url"]
+            if (results != null) {
+                results = extractNYTResults(results)
+                return {
+                    displayTitle: results["display_title"],
+                    mpaaRating: results["mpaa_rating"],
+                    criticsPick: results["critics_pick"],
+                    summaryShort: results["summary_short"],
+                    articleURL: results["link"]["url"]
+                }
             }
         }
     }
