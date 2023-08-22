@@ -1,6 +1,6 @@
 extend schema
   @link(url: "https://specs.apollo.dev/federation/v2.0",
-        import: ["@key", "@shareable"])
+        import: ["@key", "@shareable", "@tag"])
         
     type Query {
         allPeople(page: Int = 1): peopleConnection!
@@ -13,8 +13,8 @@ extend schema
     type Person @key(fields: "id") {
         id: ID!
         name: String!
-        height: String
-        mass: Int
+        height: String @deprecated(reason: "low usage")
+        mass: Int @deprecated
         skin_color: String
         eye_color: String
         birth_year: String
@@ -42,11 +42,11 @@ extend schema
         nodes: [Species!]!
     }
 
-    type Species {
+    type Species @tag(name: "internal") {
         name: String!
         classification: String
         designation: String
-        average_height: String
+        average_height: String @deprecated
         skin_colors: String
         hair_colors: String
         eye_colors: String
