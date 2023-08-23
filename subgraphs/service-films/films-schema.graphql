@@ -22,6 +22,7 @@ type Film @key(fields: "id") {
     vehicle_ids: [String]
     species_ids: [String]
     url: String
+    testing: String
 
 
 }
