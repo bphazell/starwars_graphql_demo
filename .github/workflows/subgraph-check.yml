@@ -2,8 +2,8 @@ name: Schema check
 on:
   pull_request:
     branches: [ main ]
-    # paths:
-    #   - "subgraphs/**"
+    paths:
+      - "subgraphs/**"
 
 jobs:
   subgraph-check:
