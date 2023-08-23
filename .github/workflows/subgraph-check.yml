@@ -29,7 +29,7 @@ jobs:
         if: env.APOLLO_KEY != 0
         run: |
           set -x
-          rover subgraph check $APOLLO_GRAPH_REF --schema subgraphs/${{ matrix.subgraph }}/${{ matrix.subgraph }}.graphql --name ${{ matrix.subgraph }}
+          rover subgraph check $APOLLO_GRAPH_REF --schema subgraphs/service-${{ matrix.subgraph }}/${{ matrix.subgraph }}-schema.graphql --name ${{ matrix.subgraph }}
       - name: skip check
         if: env.APOLLO_KEY == 0
         run: echo skipping subgraph check due to public repo fork PR not having secrets access.
