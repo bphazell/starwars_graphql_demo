@@ -53,7 +53,6 @@ extend schema
         average_lifespan: String
         language: String
         people: [Person]
-        testing: String
     }
 
     type Film @key(fields: "id", resolvable: false){
