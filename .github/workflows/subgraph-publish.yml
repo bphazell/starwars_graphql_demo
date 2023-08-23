@@ -1,0 +1,66 @@
+# This job publishes the schema to the registry's staging variant
+name: Staging Publish Schema
+
+# It runs after the PR is closed with a merge
+on:
+    pull_request:
+      types: [closed]
+
+jobs:
+  subgraph-publish:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - subgraph: "films"
+            routing_url: "http://localhost:4004/"
+            rover-version: "latest"
+          - subgraph: "people"
+            routing_url: "http://localhost:4001/"
+            rover-version: "latest"
+          - subgraph: "planets"
+            routing_url: "http://localhost:4002/"
+            rover-version: "latest"
+          - subgraph: "starships"
+            routing_url: "http://localhost:4003/"
+            rover-version: "latest"
+          - subgraph: "reviews"
+            routing_url: "http://localhost:4005/"
+            rover-version: "latest"
+    env:
+      APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+      APOLLO_GRAPH_REF: Brian-SWAPI-Demo@current
+
+    name: ${{ matrix.subgraph }}
+
+    steps:
+        - uses: actions/checkout@v3
+        -
+          name: install rover
+          env:
+            ROVER_VERSION: ${{ matrix.rover-version }}
+          run: |
+            curl -sSL https://rover.apollo.dev/nix/$ROVER_VERSION | sh
+            echo "PATH=$PATH:$HOME/.rover/bin" >> ${GITHUB_ENV}
+        # -
+        # Run Additonal Subgraph Check
+        #   name: subgraph check
+        #   run: |
+        #     set -x
+        #     rover subgraph check $APOLLO_GRAPH_REF --schema subgraphs/${{ matrix.subgraph }}/${{ matrix.subgraph }}.graphql --name ${{ matrix.subgraph }}
+       #  -
+        # Deploy code to dev
+        #   name: "TODO: deploy your subgraph to dev"
+        #   run: |
+        #     echo "TODO: ADD YOUR DEPLOYMENT STEPS HERE"
+        #     echo "which should only complete when the new version of the subgraph is deployed"
+        #     echo "so the subgraph schema can be published AFTER the subgraph service is deployed"
+        #     echo ""
+        #     echo "see https://github.com/apollographql/supergraph-demo-k8s-graphops"
+        #     echo "for a more scalable way of doing this in a Kubernetes-native way."
+        -
+          name: subgraph publish
+          run: |
+            set -x
+            rover subgraph publish $APOLLO_GRAPH_REF --routing-url ${{ matrix.routing_url }} --schema subgraphs/service-${{ matrix.subgraph }}/${{ matrix.subgraph }}-schema.graphql --name ${{ matrix.subgraph }}
+
