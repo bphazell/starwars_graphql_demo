@@ -1,6 +1,7 @@
 name: Schema check
 on:
   pull_request:
+    types: [opened, synchronize, edited]
     branches: [ main ]
     paths:
       - "subgraphs/**"
