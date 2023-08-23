@@ -1,0 +1,63 @@
+extend schema
+  @link(url: "https://specs.apollo.dev/federation/v2.0",
+        import: ["@key", "@shareable", "@tag"])
+        
+    type Query {
+        allPeople(page: Int = 1): peopleConnection!
+        personByID(id: ID!): Person!
+        searchPersonByName(name: String!): peopleConnection
+        allSpecies(page: Int = 1): speciesConnection!
+        species(id: ID! = 1): Species!
+    }
+
+    type Person @key(fields: "id") {
+        id: ID!
+        name: String!
+        height: String @deprecated(reason: "low usage")
+        mass: Int @deprecated
+        skin_color: String
+        eye_color: String
+        birth_year: String
+        gender: String
+        species: Species
+        films: [Film]
+        vehicle_ids: [String]
+        starship_ids: [String]
+        homeworld_id: String
+    }
+
+    type PageInfo @shareable {
+        count: Int!
+        next: String
+        previous: String
+    }
+
+    type peopleConnection {
+        pageInfo: PageInfo!
+        nodes: [Person!]!
+    }
+
+    type speciesConnection {
+        pageInfo: PageInfo!
+        nodes: [Species!]!
+    }
+
+    type Species @tag(name: "internal") {
+        name: String!
+        classification: String
+        designation: String
+        average_height: String @deprecated
+        skin_colors: String
+        hair_colors: String
+        eye_colors: String
+        average_lifespan: String
+        language: String
+        people: [Person]
+        testing: String
+    }
+
+    type Film @key(fields: "id", resolvable: false){
+        id: ID!
+    }
+
+
