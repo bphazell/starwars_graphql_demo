@@ -24,7 +24,6 @@ extend schema
         vehicle_ids: [String]
         starship_ids: [String]
         homeworld_id: String
-        testing: String
     }
 
     type PageInfo @shareable {

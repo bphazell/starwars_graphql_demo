@@ -1,6 +1,6 @@
 extend schema
   @link(url: "https://specs.apollo.dev/federation/v2.0",
-        import: ["@key", "@shareable"])
+        import: ["@key", "@shareable", "@tag"])
 
 type Query {
     film(id: ID!): Film
@@ -21,8 +21,7 @@ type Film @key(fields: "id") {
     starship_ids: [String]
     vehicle_ids: [String]
     species_ids: [String]
-    url: String
-    testing: String
+    url: String @tag(name: "internal")
 
 
 }
