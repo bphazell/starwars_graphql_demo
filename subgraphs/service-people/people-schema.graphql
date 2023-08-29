@@ -6,8 +6,8 @@ extend schema
         allPeople(page: Int = 1): peopleConnection!
         personByID(id: ID!): Person!
         searchPersonByName(name: String!): peopleConnection
-        allSpecies(page: Int = 1): speciesConnection!
-        species(id: ID! = 1): Species!
+        allSpecies(page: Int = 1): speciesConnection! @tag(name: "internal")
+        species(id: ID! = 1): Species! @tag(name: "internal")
     }
 
     type Person @key(fields: "id") {
@@ -19,7 +19,7 @@ extend schema
         eye_color: String
         birth_year: String
         gender: String
-        species: Species
+        species: Species @tag(name: "internal")
         films: [Film]
         vehicle_ids: [String]
         starship_ids: [String]
