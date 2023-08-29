@@ -1,6 +1,6 @@
 extend schema
   @link(url: "https://specs.apollo.dev/federation/v2.0",
-        import: ["@key", "@shareable"])
+        import: ["@key", "@shareable", "@tag"])
 
     type Query {
         planet(id: ID): Planet
@@ -9,9 +9,9 @@ extend schema
 
     type Planet {
         name: String!
-        rotation_period: String
-        orbital_period: String
-        diameter: String
+        rotation_period: String @tag(name: "internal")
+        orbital_period: String @tag(name: "internal")
+        diameter: String @tag(name: "internal")
         climate: String
         gravity: String
         population: String

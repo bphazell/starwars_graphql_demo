@@ -2,10 +2,10 @@
 
 extend schema
   @link(url: "https://specs.apollo.dev/federation/v2.0",
-        import: ["@key", "@requires", "@external"])
+        import: ["@key", "@requires", "@external", "@tag"])
 
 type Query {
-    getReview(searchTitle: String!): reviewConnection
+    getReview(searchTitle: String!): reviewConnection @tag(name: "internal")
 }
 
 type reviewConnection {
@@ -23,10 +23,10 @@ numResults: Int
 
 type Film @key(fields: "id") {
     id: ID!
-    title: String! @external 
-    mpaaRating: String  @requires(fields: "title")
-    criticsPick: Boolean  @requires(fields: "title")
-    summaryShort: String @requires(fields: "title")
-    articleURL: String @requires(fields: "title")
+    title: String! @external @tag(name: "internal")
+    mpaaRating: String  @requires(fields: "title") @tag(name: "internal")
+    criticsPick: Boolean  @requires(fields: "title") @tag(name: "internal")
+    summaryShort: String @requires(fields: "title")@tag(name: "internal")
+    articleURL: String @requires(fields: "title") @tag(name: "internal")
 }
 

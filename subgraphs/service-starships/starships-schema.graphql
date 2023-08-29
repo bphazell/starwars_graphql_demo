@@ -1,6 +1,6 @@
 extend schema
   @link(url: "https://specs.apollo.dev/federation/v2.0",
-        import: ["@key", "@shareable"])
+        import: ["@key", "@shareable", "@tag"])
 
     type Query {
         allStarships(page: Int = 1): shipsConnection!
@@ -14,7 +14,7 @@ extend schema
     interface Ride {
         name: String!
         model: String
-        manufacturer: String
+        manufacturer: String @tag(name: "internal")
         cost_in_credits: String
         length: String
         max_atmosphering_speed: String
