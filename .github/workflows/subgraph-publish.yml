@@ -5,6 +5,7 @@ name: Staging Publish Schema
 on:
     pull_request:
       types: [closed]
+      branches: [ main ]
 
 jobs:
   subgraph-publish:
