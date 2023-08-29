@@ -37,7 +37,7 @@ extend schema
         nodes: [Person!]!
     }
 
-    type speciesConnection {
+    type speciesConnection @tag(name: "internal") {
         pageInfo: PageInfo!
         nodes: [Species!]!
     }
@@ -53,7 +53,6 @@ extend schema
         average_lifespan: String
         language: String
         people: [Person]
-        testing: String
     }
 
     type Film @key(fields: "id", resolvable: false){
