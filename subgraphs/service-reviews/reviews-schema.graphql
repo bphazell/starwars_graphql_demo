@@ -23,7 +23,7 @@ numResults: Int
 
 type Film @key(fields: "id") {
     id: ID!
-    title: String! @external @tag(name: "internal")
+    title: String! @external
     mpaaRating: String  @requires(fields: "title") @tag(name: "internal")
     criticsPick: Boolean  @requires(fields: "title") @tag(name: "internal")
     summaryShort: String @requires(fields: "title")@tag(name: "internal")
