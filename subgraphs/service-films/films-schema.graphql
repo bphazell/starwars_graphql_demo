@@ -22,7 +22,6 @@ type Film @key(fields: "id") {
     vehicle_ids: [String]
     species_ids: [String]
     url: String @tag(name: "internal")
-    test: String
 
 
 }
