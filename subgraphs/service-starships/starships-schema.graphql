@@ -45,7 +45,8 @@ extend schema
         id: ID
     }
 
-    type Vehicle implements Ride {
+    type Vehicle implements Ride @key(fields: "id") {
+        id: ID!
         name: String!
         model: String
         manufacturer: String

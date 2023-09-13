@@ -21,7 +21,7 @@ extend schema
         gender: String
         species: Species @tag(name: "internal")
         films: [Film]
-        vehicle_ids: [String]
+        vehicles: [Vehicle]
         starship_ids: [String]
         homeworld: Planet
     }
@@ -60,6 +60,10 @@ extend schema
     }
 
     type Planet @key(fields: "id", resolvable: false) {
+        id: ID!
+    }
+
+    type Vehicle @key(fields: "id", resolvable: false) {
         id: ID!
     }
 
