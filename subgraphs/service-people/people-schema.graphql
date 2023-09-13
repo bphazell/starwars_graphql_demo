@@ -23,7 +23,7 @@ extend schema
         films: [Film]
         vehicle_ids: [String]
         starship_ids: [String]
-        homeworld_id: String
+        homeworld_id: Planet
     }
 
     type PageInfo @shareable {
@@ -55,7 +55,11 @@ extend schema
         people: [Person]
     }
 
-    type Film @key(fields: "id", resolvable: false){
+    type Film @key(fields: "id", resolvable: false) {
+        id: ID!
+    }
+
+    type Planet @key(fields: "id", resolvable: false) {
         id: ID!
     }
 
