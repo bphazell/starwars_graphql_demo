@@ -23,7 +23,7 @@ extend schema
         films: [Film]
         vehicle_ids: [String]
         starship_ids: [String]
-        homeworld_id: Planet
+        homeworld: Planet
     }
 
     type PageInfo @shareable {

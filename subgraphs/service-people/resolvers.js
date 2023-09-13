@@ -83,9 +83,10 @@ const resolvers = {
             
         },
 
-        homeworld_id: ({homeworld}) => {
+        homeworld: ({homeworld}) => {
             if (typeof homeworld !== 'undefined'){
-                return extractIDFromString(homeworld)
+                let planet_id = extractIDFromString(homeworld)
+                return { id: planet_id }
             } else {
                 return null
             }
@@ -96,6 +97,17 @@ const resolvers = {
         },
 
     },
+
+    // Planet: {
+    //     id: ({homeworld}) => {
+    //         if (typeof homeworld !== 'undefined'){
+    //             let planet_id = extractIDFromString(homeworld)
+    //             return planet_id
+    //         } else {
+    //             return null
+    //         }
+    //     },
+    // }
 
     Species: {
         people: ({ people }, __, { dataSources}) => {
