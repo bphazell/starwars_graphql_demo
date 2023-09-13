@@ -66,14 +66,6 @@ const resolvers = {
             return film_id
         },
 
-        vehicle_ids: ({ vehicles }) => {
-            if (vehicles.length > 0){
-                return extractIDFromArray(vehicles)
-            } else {
-                return null
-            }
-        },
-
         starship_ids: ({ starships }) => {
             if (starships.length > 0){ 
                 return extractIDFromArray(starships)
@@ -87,6 +79,14 @@ const resolvers = {
             if (typeof homeworld !== 'undefined'){
                 let planet_id = extractIDFromString(homeworld)
                 return { id: planet_id }
+            } else {
+                return null
+            }
+        },
+
+        vehicles: ({ vehicles }) => {
+            if (vehicles.length > 0){
+                return extractIDFromArrayWithIDKey(vehicles)
             } else {
                 return null
             }

@@ -57,6 +57,11 @@ const resolvers = {
     },
 
     Vehicle: {
+
+        id: ({ url }) => {
+            return extractIDFromString(url) 
+        },
+
         films: ({ films }) => {
             return extractIDFromArrayWithIDKey(films)
         },
@@ -68,6 +73,10 @@ const resolvers = {
                 return null
             }
             
+        },
+
+        __resolveReference: ({ id }, { dataSources }) => {
+            return dataSources.vehiclesAPI.getVehicle(id)
         },
 
     },
