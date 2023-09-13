@@ -24,7 +24,8 @@ extend schema
         consumables: String
     }
 
-    type Starship implements Ride {
+    type Starship implements Ride @key(fields: "id") {
+        id: ID!
         name: String!
         model: String
         manufacturer: String
