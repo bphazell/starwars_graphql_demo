@@ -34,6 +34,11 @@ const resolvers = {
     },
 
     Planet: {
+
+        id: ({ url }) => {
+            return extractIDFromString(url) 
+        },
+
         films: ( {films}) => {
             return extractIDFromArrayWithIDKey(films)
         },
@@ -44,6 +49,10 @@ const resolvers = {
             } else {
                 return null
             }
+        },
+
+        __resolveReference: ({ id }, { dataSources }) => {
+            return dataSources.filmsAPI.getFilm(id);
         },
     }, 
 
