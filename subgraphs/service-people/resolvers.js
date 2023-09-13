@@ -66,15 +66,6 @@ const resolvers = {
             return film_id
         },
 
-        starship_ids: ({ starships }) => {
-            if (starships.length > 0){ 
-                return extractIDFromArray(starships)
-            } else {
-                return null
-            }
-            
-        },
-
         homeworld: ({homeworld}) => {
             if (typeof homeworld !== 'undefined'){
                 let planet_id = extractIDFromString(homeworld)
@@ -92,22 +83,19 @@ const resolvers = {
             }
         },
 
+        starships: ({ starships }) => {
+            if (starships.length > 0){
+                return extractIDFromArrayWithIDKey(starships)
+            } else {
+                return null
+            }
+        },
+
         __resolveReference: ({ id }, { dataSources}) => {
             return dataSources.peopleAPI.getPerson(id);
         },
 
     },
-
-    // Planet: {
-    //     id: ({homeworld}) => {
-    //         if (typeof homeworld !== 'undefined'){
-    //             let planet_id = extractIDFromString(homeworld)
-    //             return planet_id
-    //         } else {
-    //             return null
-    //         }
-    //     },
-    // }
 
     Species: {
         people: ({ people }, __, { dataSources}) => {

@@ -22,7 +22,7 @@ extend schema
         species: Species @tag(name: "internal")
         films: [Film]
         vehicles: [Vehicle]
-        starship_ids: [String]
+        starships: [Starship]
         homeworld: Planet
     }
 
@@ -64,6 +64,10 @@ extend schema
     }
 
     type Vehicle @key(fields: "id", resolvable: false) {
+        id: ID!
+    }
+
+    type Starship @key(fields: "id", resolvable: false) {
         id: ID!
     }
 
