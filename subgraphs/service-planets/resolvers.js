@@ -52,7 +52,7 @@ const resolvers = {
         },
 
         __resolveReference: ({ id }, { dataSources }) => {
-            return dataSources.filmsAPI.getFilm(id);
+            return dataSources.planetsAPI.getPlanet(id);
         },
     }, 
 
