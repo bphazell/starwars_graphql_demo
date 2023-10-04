@@ -1,2 +1,40 @@
+cors:
+  origins:
+    - http://localhost:3000 # Allows any locally-running client to run against your Router
+    - https://studio.apollographql.com # Allows Apollo Studio to still run queries against your Router
+
+supergraph:
+  # The socket address and port to listen on
+  listen: 127.0.0.1:4008
+
 include_subgraph_errors:
   all: true # Propagate errors from all subgraphs
+
+limits:
+  # Limits the deepest nesting of selection sets in an operation, including fields in fragments.
+  max_depth: 10
+  # Limits the number of unique fields included in an operation, including fields of fragments
+  max_height: 20
+  # Limits the total number of aliased fields in an operation, including fields of fragments
+  max_aliases: 30
+  # Limits the number of root fields in an operation, including root fields in fragments
+  max_root_fields: 20
+
+telemetry:
+  apollo:
+    # The percentage of requests will include HTTP request and response headers in traces sent to Apollo Studio.
+    # This is expensive and should be left at a low value.
+    # This cannot be higher than tracing->trace_config->sampler
+    field_level_instrumentation_sampler: 1 # (default)
+  # tracing:
+  #   trace_config:
+  #     sampler: 1 # The percentage of requests that will generate traces (a rate or `always_on` or `always_off`)
+  #     service_name: "router"
+  #     service_namespace: "apollo"
+  #   zipkin:
+  #     # Either 'default' or a URL
+  #     endpoint: default
+ 
+
+  # Uncomment to enable warn_only mode
+  # warn_only: true
