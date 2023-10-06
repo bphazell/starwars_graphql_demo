@@ -21,18 +21,13 @@ import MarkDown from './md-content';
 const TrackDetail = ({ track }) => {
   const {
     title,
-    description,
-    thumbnail,
-    author,
-    length,
-    modulesCount,
-    modules,
-    numberOfViews,
+    opening_crawl
+
   } = track;
 
   return (
     <ContentSection>
-      <CoverImage src={thumbnail} alt="" />
+      {/* <CoverImage src={thumbnail} alt="" /> */}
       <TrackDetails>
         <DetailRow>
           <h1>{title}</h1>
@@ -42,24 +37,24 @@ const TrackDetail = ({ track }) => {
             <h4>Track details</h4>
             <IconAndLabel>
               <IconView width="16px" />
-              <div id="viewCount">{numberOfViews} view(s)</div>
+              {/* <div id="viewCount">{numberOfViews} view(s)</div> */}
             </IconAndLabel>
             <IconAndLabel>
               <IconBook width="14px" height="14px" />
-              <div>{modulesCount} modules</div>
+              {/* <div>{modulesCount} modules</div> */}
             </IconAndLabel>
             <IconAndLabel>
               <IconTime width="14px" />
-              <div>{humanReadableTimeFromSeconds(length)}</div>
+              {/* <div>{humanReadableTimeFromSeconds(length)}</div> */}
             </IconAndLabel>
           </DetailItem>
           <DetailItem>
             <h4>Author</h4>
-            <AuthorImage src={author.photo} />
-            <AuthorName>{author.name}</AuthorName>
+            {/* <AuthorImage src={author.photo} /> */}
+            {/* <AuthorName>{author.name}</AuthorName> */}
           </DetailItem>
           <div>
-            <StyledLink to={`./module/${modules[0]['id']}`}>
+            {/* <StyledLink to={`./module/${modules[0]['id']}`}>
               <Button
                 icon={<IconRun width="20px" />}
                 color={colors.pink.base}
@@ -67,26 +62,26 @@ const TrackDetail = ({ track }) => {
               >
                 Start Track
               </Button>
-            </StyledLink>
+            </StyledLink> */}
           </div>
         </DetailRow>
         <ModuleListContainer>
           <DetailItem>
             <h4>Modules</h4>
             <ul>
-              {modules.map((module) => (
-                <li key={module.title}>
-                  <div>{module.title}</div>
-                  <ModuleLength>
-                    {humanReadableTimeFromSeconds(module.length)}
-                  </ModuleLength>
-                </li>
-              ))}
+              {/* {modules.map((module) => ( */}
+                {/* // <li key={module.title}> */}
+                {/* //   <div>{module.title}</div> */}
+                //   <ModuleLength>
+                //     {/* {humanReadableTimeFromSeconds(module.length)} */}
+                //   </ModuleLength>
+                {/* // </li> */}
+              {/* ))} */}
             </ul>
           </DetailItem>
         </ModuleListContainer>
       </TrackDetails>
-      <MarkDown content={description} />
+      <MarkDown content={opening_crawl} />
     </ContentSection>
   );
 };
