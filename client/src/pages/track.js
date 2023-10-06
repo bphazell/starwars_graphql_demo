@@ -4,15 +4,19 @@ import { Layout, QueryResult } from "../components";
 import { useParams } from "react-router-dom";
 
 const GET_TRACK = gql`
-    query GetFilmDetails($filmId: ID!) {
-        film(id: $filmId) {
-            title
-            characters {
-                name
-            }
-            opening_crawl
-        }
+query GetFilmDetails($filmId: ID!) {
+  film(id: $filmId) {
+    title
+    characters {
+      name
+       ... @defer { starships {
+        name
+      }
+       }
     }
+    opening_crawl
+  }
+}
 `;
 
 /**
