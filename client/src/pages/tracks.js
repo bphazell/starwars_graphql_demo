@@ -3,6 +3,7 @@ import { useQuery, gql } from "@apollo/client";
 import TrackCard from "../containers/track-card";
 import { Layout } from "../components";
 import QueryResult from "../components/query-result";
+import Track from "./track";
  
 /** TRACKS gql query to retrieve all tracks */
 const TRACKS = gql`
