@@ -1,0 +1,10 @@
+federation_version: =2.4.7
+subgraphs:
+  films:
+    routing_url: http://localhost:4004
+    schema:
+      file: ./subgraphs/service-films/films-schema.graphql # Schema provided via file
+  people:
+    routing_url: http://localhost:4001 
+    schema:
+      file: ./subgraphs/./service-people/people-schema.graphql  # Schema provided via introspection, routing_url can be omitted
